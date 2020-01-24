@@ -4,6 +4,9 @@ import Dropzone from '../dropzone/Dropzone'
 import Progress from '../progress/Progress'
 import Itemslist from '../itemslist/Itemslist'
 
+import axios from 'axios';
+import { Base64 } from 'js-base64';
+
 class Upload extends Component {
     constructor(props) {
         super(props);
@@ -129,7 +132,18 @@ class Upload extends Component {
     getData() {
       // create a new XMLHttpRequest
       var req = new XMLHttpRequest()
-  
+
+      //let username = 'user';
+      //let password = 'passwd';
+      //axios.get("https://ux.carabinieristore/import/product/",
+      //    { headers: {'Authorization': 'Basic ' +Base64.encode(username + ":" + password)}}
+      //).then(res => {
+      //  console.log(res);
+      //  console.log(res.data);
+      //})
+    //console.log(response.data)
+      //let headers = new Headers();
+      //headers.set('Authorization', 'Basic ' + base64.encode(username + ":" + password));
       // get a callback when the server responds
       req.addEventListener('load', () => {
         // update the state of the component with the result here
@@ -147,6 +161,7 @@ class Upload extends Component {
       })
       // open the request with the verb and the url
       req.open("GET", 'http://localhost:8000/api/files/')
+      //req.open("GET", 'https://ux.carabinieristore/import/product/')
       // send the request
       req.send()
     }
@@ -184,6 +199,7 @@ class Upload extends Component {
           formData.append("file", file, file.name);
       
           req.open("POST", 'http://localhost:8000/api/files/');
+          //req.open("POST", 'https://ux.carabinieristore/import/product/');
           req.send(formData);
         });
       }
